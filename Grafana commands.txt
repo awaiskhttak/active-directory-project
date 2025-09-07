@@ -1,0 +1,21 @@
+D ] Install Grafana
+sudo apt-get install -y apt-transport-https software-properties-common
+wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add -
+echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee -a /etc/apt/sources.list.d/grafana.list
+sudo apt-get update
+sudo apt-get -y install grafana
+===============================================================================================================================================================
+E ]
+sudo systemctl enable grafana-server
+sudo systemctl start grafana-server
+sudo systemctl status grafana-server
+
+http://192.168.0.148:3000
+===============================================================================================================================================================
+F ] Install windows_exporterin Window Server
+
+1 -- Download msi file from https://github.com/prometheus-community/windows_exporter/releases
+
+2 -- Install msi file and check windows_exporter service under services.msc
+
+3 -- Now yur exporter is running and it should start exposing metrics on http://localhost:9182/metrics

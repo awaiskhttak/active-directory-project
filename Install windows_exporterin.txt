@@ -1,0 +1,25 @@
+F ] Install windows_exporterin Window Server
+
+1 -- Download msi file from https://github.com/prometheus-community/windows_exporter/releases
+
+2 -- Install msi file and check windows_exporter service under services.msc
+
+3 -- Now yur exporter is running and it should start exposing metrics on http://localhost:9182/metrics
+===============================================================================================================================================================
+G ] Binding Prometheus to the Windows exporter
+
+1 -- Add below 2 lines below - job_name: in prometheus.yml file
+     scrape_interval: 6s
+     scrape_timeout: 5s
+
+2 -- Add Windows server under targets in yaml file
+     - targets: ["localhost:9090", "192.168.0.149:9182"]
+
+3--Check the indentation of the prometheus config file with below command
+$ promtool check config /etc/prometheus/prometheus.yml
+
+4 -- Restart service
+     sudo systemctl restart prometheus
+===============================================================================================================================================================
+H ] Import Grafana Dashboard
+Dashboard ID -- 14694
